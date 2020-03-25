@@ -1,0 +1,37 @@
+{
+  "id": "1713574",
+  "name": "market",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11488226",
+      "name": "all-fill",
+      "font_class": "all-fill",
+      "unicode": "e777",
+      "unicode_decimal": 59255
+    },
+    {
+      "icon_id": "11488230",
+      "name": "bussiness-man-fill",
+      "font_class": "bussiness-man-fill",
+      "unicode": "e779",
+      "unicode_decimal": 59257
+    },
+    {
+      "icon_id": "11488233",
+      "name": "cart-Empty-fill",
+      "font_class": "cart-Empty-fill",
+      "unicode": "e77a",
+      "unicode_decimal": 59258
+    },
+    {
+      "icon_id": "11674925",
+      "name": "home-fill",
+      "font_class": "home-fill",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    }
+  ]
+}
