@@ -1,4 +1,5 @@
 # mobile_mall
 
+### 后端代码是网上找到的大佬代码,
 
-### 因为后端数据以及接口问题暂时未能继续进行
+原github地址： [https://github.com/zhousg/letao](https://github.com/zhousg/letao)
