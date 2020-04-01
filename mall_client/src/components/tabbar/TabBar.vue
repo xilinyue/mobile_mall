@@ -2,7 +2,7 @@
     <div class="tab-bar">
         <TabBarItem path="/home">
             <template v-slot:item-icon>
-                <span class="iconfont icon-home-fill"></span>
+                <span class="iconfont icon-homepage_fill"></span>
             </template>
             <template v-slot:item-msg>
                 <p>首页</p>
@@ -10,7 +10,7 @@
         </TabBarItem>
         <TabBarItem path="/category">
             <template v-slot:item-icon>
-                <span class="iconfont icon-all-fill"></span>
+                <span class="iconfont icon-qrcode_fill"></span>
             </template>
             <template v-slot:item-msg>
                 <p>分类</p>
@@ -18,7 +18,7 @@
         </TabBarItem>
         <TabBarItem path="/market">
             <template v-slot:item-icon>
-                <span class="iconfont icon-cart-Empty-fill"></span>
+                <span class="iconfont icon-publishgoods_fill"></span>
             </template>
             <template v-slot:item-msg>
                 <p>购物车</p>
@@ -26,7 +26,7 @@
         </TabBarItem>
         <TabBarItem path="/profile">
             <template v-slot:item-icon>
-                <span class="iconfont icon-bussiness-man-fill"></span>
+                <span class="iconfont icon-people_fill"></span>
             </template>
             <template v-slot:item-msg>
                 <p>我的</p>

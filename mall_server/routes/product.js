@@ -77,7 +77,7 @@ router.get("/queryProductDetail", function (req, res) {
         })
     })
 });
-router.get("/queryProductDetailList", checkRootLogin);
+// router.get("/queryProductDetailList", checkRootLogin);
 router.get("/queryProductDetailList", function (req, res) {
     var product = new Product({
         proName: req.query.proName ? req.query.proName : '',

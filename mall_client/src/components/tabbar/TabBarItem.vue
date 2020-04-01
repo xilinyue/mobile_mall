@@ -12,7 +12,7 @@
         },
         methods: {
             handleClick() {
-                this.$router.push(this.path);
+                this.$router.replace(this.path);
             }
         },
         computed: {

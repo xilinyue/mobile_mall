@@ -19,6 +19,11 @@
 <style lang="less">
 @import "assets/css/reset.css";
 @import "assets/css/font/icon/iconfont.css";
+#app {
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+}
   .center {
     position: absolute;
     width: 100%;
