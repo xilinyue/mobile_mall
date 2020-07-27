@@ -41,11 +41,11 @@
         text-align: center;
         height: 49px;
         box-sizing: border-box;
+        line-height: 1.2;
         span{
             font-size: 24px;
         }
         div{
-            margin: 0;
             font-size: 14px;
         }
     }
