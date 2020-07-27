@@ -1,4 +1,4 @@
-@8import "./normalize.css";
+@import "./normalize.css";
 
 /*找到根元素， 定义变量*/
 :root{
@@ -17,11 +17,10 @@
 }
 
 body{
-	font-family: "Helvetica Neue" .Helvetica,"PingFang sc", "Hiragino Sans GB","Microsoft YaHei", "微软雅黑",Arial,sans-serif;
+	font-family: "Helvetica Neue" ,Helvetica,"PingFang sc", "Hiragino Sans GB","Microsoft YaHei", "微软雅黑",Arial,sans-serif;
 	user-select: none;
 	-webkit-tap-highlight-color: transparent;
 	background: var(--color-background);  /*引用变量*/
 	color: var(--color-text);
-	width: 100%;
 	width: 100%;
 }
