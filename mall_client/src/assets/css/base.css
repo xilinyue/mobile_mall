@@ -24,3 +24,10 @@ body{
 	color: var(--color-text);
 	width: 100%;
 }
+
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}

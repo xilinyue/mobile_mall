@@ -1,6 +1,13 @@
 const express = require('express');
+const cookieParser = require("cookie-parser");
+
+const mongoose = require("./db/index");
 
 let app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 //设置允许跨域访问
 app.use((req,res,next) => {
@@ -18,7 +25,10 @@ app.use((req,res,next) => {
     }
   });
 
-//简单测试数据
+// 商品相关
+app.use("/api/goods", require("./routes/goods"));
+
+//首页简单测试数据
 app.get("/home/multiData",(req,res) => {
     res.send({
         code: 0,
