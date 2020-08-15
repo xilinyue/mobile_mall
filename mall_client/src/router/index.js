@@ -11,6 +11,7 @@ const routes = [
     {path: '/category',name: 'Category', component: () => import("views/category/Category.vue")},
     {path: '/cart',name: 'Cart', component: () => import("views/cart/Cart.vue")},
     {path: '/profile',name: 'Profile', component: () => import("views/profile/Profile.vue")},
+    {path: '/detail/:iid',name: 'Detail', component: () => import("views/detail/Detail.vue")}
 ];
 // 定义路由对象
 const router = new VueRouter({

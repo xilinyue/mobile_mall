@@ -27,6 +27,7 @@ app.use((req,res,next) => {
 
 // 商品相关
 app.use("/api/goods", require("./routes/goods"));
+app.use("/api/goodDetail", require("./routes/goodDetail"));
 
 //首页简单测试数据
 app.get("/home/multiData",(req,res) => {

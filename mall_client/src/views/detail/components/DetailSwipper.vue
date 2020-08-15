@@ -3,9 +3,7 @@
         <Carousel autoplay>
             <Carousel-item v-for="(item,index) in banners" :key="index">
                 <div class="demo-carousel">
-                    <a :href="item.link">
-                        <img :src="item.image" @load="imageLoad"/>
-                    </a>
+                    <img :src="item" @load="imageLoad"/>
                 </div>
             </Carousel-item>
         </Carousel>
@@ -14,11 +12,13 @@
 
 <script>
     export default {
-        name: "HomeSwipper",
+        name: "DetailSwipper",
         props: {
             banners: {
                 type: Array,
-                default: []
+                default() {
+                    return []
+                }
             }
         },
         methods: {
@@ -31,9 +31,10 @@
 
 <style scoped lang="less">
     .ivu-carousel {
+        height: 300px;
+        overflow: hidden;
         img{
             width: 100%;
-            height: 150px;
         }
     }
 </style>

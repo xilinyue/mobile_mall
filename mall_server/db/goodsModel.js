@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let goodsSchema = new Schema({
+    iid: {type: String, required: true}, // 唯一标识
     title: {type: String, required: true},  // 标题
     cfav: {type: Number, required: true},  // 收藏数
     clientUrl: {type: String, required: true},  // 详情地址

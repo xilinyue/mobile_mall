@@ -1,6 +1,6 @@
 <template>
-    <div class="goods-item">
-        <img :src="good.img" alt="good.title">
+    <div class="goods-item" @click="itemClick">
+        <img :src="good.img" alt="good.title" @load="imageLoad">
         <div class="good-info">
             <p class="title">{{good.title}}</p>
             <span class="price fl">￥{{good.price}}</span>
@@ -17,6 +17,14 @@
                 type: Object,
                 default: {}
             }
+        },
+        methods: {
+            imageLoad() {
+                this.$bus.$emit("imageLoad");
+            },
+            itemClick() {
+                this.$router.push("/detail/" + this.good.iid);
+            }
         }
     }
 </script>
@@ -25,6 +33,7 @@
     .goods-item{
         width: 48%;
         padding: 2px;
+        cursor: pointer;
         img{
             width: 100%;
             border-radius: 3px;

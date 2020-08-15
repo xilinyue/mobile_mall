@@ -34,20 +34,32 @@
 
             // 监听滚动
             this.scroll.on("scroll", (position) => {
+                // console.log(this.scroll);
                 this.$emit("scroll",position);
             });
 
-            // 监听下拉加载更多
-            this.scroll.on("pullingUp", () => {
-                this.$emit("pullingUp");
-            })
+            if (this.pullUpLoad){
+                // 监听下拉加载更多
+                this.scroll.on("pullingUp", () => {
+                    this.$emit("pullingUp");
+                })
+            }
         },
         methods: {
-            backTop(x,y,time = 500) {
+             backTop(x,y,time = 500) {
                 this.scroll.scrollTo(x,y,time);
             },
             finishPullUp() {
                 this.scroll.finishPullUp();
+            },
+            // 刷新scroll
+            refresh() {
+                // console.log("----");
+                this.scroll && this.scroll.refresh();
+            },
+            getY() {
+                // console.log(this.scroll.y);
+                return this.scroll ? this.scroll.y : 0;
             }
         }
     }

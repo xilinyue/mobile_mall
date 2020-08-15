@@ -3,21 +3,26 @@
         <nav-bar class="home-nav">
             <div slot="center">购物街</div>
         </nav-bar>
+        <!--TAB-->
+        <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick"
+                     ref="tabControl1" v-show="ifTabControlFixed"></tab-control>
         <scroll
                 class="content"
                 ref="scroll"
                 @scroll="scroll"
                 :probe-type="3"
-                :pull-up-load="true"
+                :pull-up-load="pullUpLoad"
                 @pullingUp="loadMore">
+            <button @click="test" id="test">测试</button>
             <!--轮播图-->
-            <home-swipper :banners="banners"></home-swipper>
+            <home-swipper :banners="banners" @swipeImageLoad="swipeImageLoad"></home-swipper>
             <!--推荐-->
             <home-recommend :recommends="recommends"></home-recommend>
             <!--本周流行-->
             <home-feature></home-feature>
             <!--TAB-->
-            <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick"></tab-control>
+            <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick"
+                        ref="tabControl2"></tab-control>
             <!--商品展示-->
             <goods-list :goods-list="showGoodsList"></goods-list>
         </scroll>
@@ -53,12 +58,16 @@
                 banners: [],
                 recommends: [],
                 goods: {
-                    'pop': {page: 1,list: []},
-                    'new': {page: 1,list: []},
-                    'sell': {page: 1,list: []}
+                    'pop': {page: 1,hasMore: true,list: []},
+                    'new': {page: 1,hasMore: true,list: []},
+                    'sell': {page: 1,hasMore: true,list: []}
                 },
                 tabType: 'pop',
-                ifShowBackTop: false
+                ifShowBackTop: false,
+                ifTabControlFixed: false,
+                tabControlOffsetTop: 0,
+                pullUpLoad: true,  //未起到想要的效果
+                saveY: 0
             }
         },
         created() {
@@ -68,12 +77,49 @@
             this.getHomeGoods('new');
             this.getHomeGoods('sell');
         },
+        mounted() {
+            // 监听图片刷新事件
+            const refresh = this.debounce(this.$refs.scroll.refresh,500);
+            this.$bus.$on('imageLoad', () => {
+               refresh();
+            });
+        },
+        activated() {
+            // console.log('activated',this.$refs.scroll);
+            this.$refs.scroll.backTop(0,this.saveY,0);
+            this.$refs.scroll.refresh();
+        },
+        deactivated() {
+            // console.log('deactivated',this.$refs.scroll);
+            this.saveY = this.$refs.scroll.getY();
+        },
         computed: {
             showGoodsList() {
                 return this.goods[this.tabType].list;
             }
         },
         methods: {
+            test() {
+                console.log(this.$refs.scroll.getY());
+            },
+            //debounce 防抖函数
+            debounce(fun, delay) {
+                let timer = null;
+
+                return function (...args) {
+                    if (timer) {clearTimeout(timer);}
+
+                    timer = setTimeout(()=> {
+                        fun.apply(this,args);
+                    },delay);
+                }
+            },
+
+            //获取tabControl 的offsetTop值
+            swipeImageLoad() {
+                this.tabControlOffsetTop = this.$refs.tabControl2.$el.offsetTop;
+            },
+
             // 修改商品展示数据类型
             tabClick(index){
                 switch (index) {
@@ -87,6 +133,11 @@
                         this.tabType = 'sell';
                         break
                 }
+                this.$refs.tabControl1.currentIndex = index;
+                this.$refs.tabControl2.currentIndex = index;
+
+                // 切换是否可以loadMore
+                this.pullUpLoad = this.goods[this.tabType].hasMore;
             },
             // 返回首页
             backTop() {
@@ -94,11 +145,14 @@
             },
             scroll(position) {
                 this.ifShowBackTop = (-position.y) > 800;
+
+                this.ifTabControlFixed = (-position.y) > this.tabControlOffsetTop;
             },
             // 加载更多
             loadMore() {
-                this.getHomeGoods(this.tabType);
-
+                if (this.goods[this.tabType].hasMore){
+                    this.getHomeGoods(this.tabType);
+                }
                 this.$refs.scroll.finishPullUp();
             },
 
@@ -128,6 +182,8 @@
                     }else if (res.code === 3){
                         let data = res.data;
                         this.goods[type].list.push(...data);
+                        this.goods[type].hasMore = false;
+                        this.pullUpLoad = false;
                     }
                 });
             }
@@ -137,6 +193,12 @@
 
 <style scoped lang="less">
     #home{
+        #test{
+            position: fixed;
+            right: 0;
+            top: 100px;
+            z-index: 100;
+        }
         padding-top: 44px;
         height: 100vh;
         .home-nav{
@@ -158,7 +220,7 @@
         .tab-control{
             position: sticky;
             top: 44px;
-            z-index: 9;
+            z-index: 0;
             background-color: #fff;
         }
     }

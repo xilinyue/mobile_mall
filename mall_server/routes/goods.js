@@ -8,7 +8,7 @@ router.get("/getHomeGoodsList",(req,res) => {
     let page = req.query.page;
     let type = req.query.type;
     goodsModel.find({type},{__v: 0}, {skip: (page-1)*10, limit: 10}).then(docs => {
-        if(docs.length = 10){
+        if(docs.length === 10){
             res.send({
                 code: 0,
                 message: "数据获取成功",

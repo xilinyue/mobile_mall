@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let goodsSchema = new Schema({
+    iid: {type: String, required: true},
     title: {type: String, required: true},  // 标题
     cfav: {type: Number, required: true},  // 收藏数
     clientUrl: {type: String, required: true},  // 详情地址
@@ -14,8 +15,7 @@ let goodsSchema = new Schema({
 
 let goodsModel = mongoose.model("good", goodsSchema);
 
-// goodsModel.create(
-//     {
+// goodsModel.create({
 //         title: '123',
 //         cfav: 12,
 //         clientUrl: '1231',
@@ -23,7 +23,8 @@ let goodsModel = mongoose.model("good", goodsSchema);
 //         orgPrice: 12312,
 //         price: 12312,
 //         type: 1
-//     }
-// )
+//     }).then(doc => {
+//         console.log(doc);
+//     })
 
 module.exports = goodsModel;
