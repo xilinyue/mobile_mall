@@ -35,6 +35,7 @@
     .comment{
         width: 100%;
         padding-top: 15px;
+        padding-bottom: 15px;
         background-color: rgba(100,100,100,.1);
         position: relative;
         .title{
@@ -48,8 +49,10 @@
             background-color: #fff;
             padding: 0 10px;
             display: flex;
+            flex-wrap: wrap;
             span{
                 padding: 3px 6px;
+                margin: 7px;
                 color: #FF2255;
                 background-color: #FFE8EE;
                 border-radius: 3px;
